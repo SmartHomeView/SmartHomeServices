@@ -1,7 +1,10 @@
+using System.ComponentModel;
+
 namespace SmartHomeServices
 {
     public class WeatherForecast
     {
+        [property: Description("创建日期")]
         public DateOnly Date { get; set; }
 
         public int TemperatureC { get; set; }

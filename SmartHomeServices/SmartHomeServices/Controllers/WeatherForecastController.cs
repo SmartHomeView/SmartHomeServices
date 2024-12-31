@@ -19,6 +19,9 @@ namespace SmartHomeServices.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [Tags("幂等接口")]
+        [EndpointSummary("获取列表")]
+        [EndpointDescription("根据订单id，删除相应订单")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
