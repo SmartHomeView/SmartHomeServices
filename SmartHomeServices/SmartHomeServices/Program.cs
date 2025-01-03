@@ -14,9 +14,9 @@ builder.Services.AddOpenApi(options =>
     {
         document.Info = new()
         {
-            Title = "智能家居服务",
+            Title = "SmartHomeServices",
             Version = "v1",
-            Description = "设备相关接口"
+            Description = ""
         };
         return Task.CompletedTask;
     });
@@ -49,11 +49,8 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 });
 app.UseCors("AllowAll");
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+app.MapOpenApi();
+app.MapScalarApiReference();
 var webSocketOptions = new WebSocketOptions
 {
     KeepAliveInterval = TimeSpan.FromMinutes(2)
