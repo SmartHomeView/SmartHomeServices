@@ -31,7 +31,7 @@ namespace SmartHomeServices.Controllers.SmartDevice
                 {
                     return ApiResponse<List<DeviceEntity>>.Failure("HomeAssistantUrl or HomeAssistantToken is not configured.");
                 }
-                HomeAssistantResponse Response = homeAssistantHelper.GetHomeAssistantResponse(homeAssistantUrl, homeAssistantToken);
+                HomeAssistantResponse Response = homeAssistantHelper.GetHomeAssistantResponse(homeAssistantUrl + "/api/states", homeAssistantToken);
                 if (Response.StatusCode == 200)
                 {
                     List<DeviceEntity> DeviceEntityList = System.Text.Json.JsonSerializer.Deserialize<List<DeviceEntity>>(Response.Response);

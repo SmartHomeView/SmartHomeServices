@@ -44,7 +44,6 @@ namespace SmartHomeServices.Helper
             HomeAssistantResponse Response = new HomeAssistantResponse();
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", HomeAssistantToken);
-            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
             var buffer = Encoding.UTF8.GetBytes(data);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -53,6 +52,7 @@ namespace SmartHomeServices.Helper
                 var response = client.PostAsync(HomeAssistantUrl, byteContent).Result;
                 Response.StatusCode = (int)response.StatusCode;
                 string result = response.Content.ReadAsStringAsync().Result;
+                Response.Response = result;
                 return Response;
             }
             catch (Exception e)
